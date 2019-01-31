@@ -1,11 +1,9 @@
 
-// import { Action } from '@ngrx/store'
 import { Movie } from '../models/movie.model'
 import * as MovieActions from '../actions/movie.actions'
 
 // Section 1
 const initialState: Movie = {
-    Id: 1,
     Title: "Dog Day Afternoon",
     Year: 1975,
     Runtime: 125,

@@ -1,5 +1,4 @@
 // Section 1
-import { Injectable } from '@angular/core'
 import { Action } from '@ngrx/store'
 import { Movie } from '../models/movie.model'
 

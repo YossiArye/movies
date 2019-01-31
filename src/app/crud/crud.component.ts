@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Movie } from '../models/movie.model';
-// import { AppState } from './../app.state';
 import * as MovieActions from '../actions/movie.actions';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 declare var $: any;
@@ -18,7 +17,6 @@ export class CrudComponent implements OnInit {
   movies: Observable<Movie[]>;
   updateIndex: number = -1;
   currentMovie: Movie = {
-    "Id": null,
     "Title": "",
     "Year": null,
     "Runtime": null,
@@ -41,7 +39,6 @@ export class CrudComponent implements OnInit {
       this.addMovie();
     }, (reason) => {
       this.currentMovie = {
-        "Id": null,
         "Title": "",
         "Year": null,
         "Runtime": null,
@@ -61,7 +58,6 @@ export class CrudComponent implements OnInit {
       this.updateMovie();
     }, (reason) => {
       this.currentMovie = {
-        "Id": null,
         "Title": "",
         "Year": null,
         "Runtime": null,
@@ -96,7 +92,6 @@ export class CrudComponent implements OnInit {
 
   reset() {
     this.currentMovie = {
-      "Id": null,
       "Title": "",
       "Year": null,
       "Runtime": null,
@@ -109,7 +104,6 @@ export class CrudComponent implements OnInit {
   }
 
   checkDup(term: string) {
-    // "../node_modules/jquery/dist/jquery.min.js"
     this.dup = false;
     let self = this;
     let count = 0;

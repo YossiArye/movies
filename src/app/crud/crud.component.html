@@ -1,68 +1,8 @@
 <div class=”container”>
-<!-- 
-    <ng-template #addContent let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Add Movie</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="card rounded-0" id="container">
-          <div class="card-body">
-            <form class="form" #thisForm="ngForm">
-              <div class="form-group">
-                <label>Id</label>
-                <input [class.is-invalid]="id.invalid && id.touched" required class="form-control rounded-0" type="text"
-                  #id="ngModel" name="id" [(ngModel)]="this.currentMovie.Id">
-                <small [class.d-none]="id.valid || id.untouched" class="text-danger">Id is required!</small>
-              </div>
-              <div class="form-group">
-                  <label>Title</label>
-                  <input [class.is-invalid]="title.invalid && title.touched || dup" required class="form-control rounded-0" type="text"
-                    #title="ngModel"  name="title" [(ngModel)]="this.currentMovie.Title" [id]="title.value | toEnglish" (blur) = "this.currentMovie.Title = $event.target.id"
-                    (blur)="checkDup(title.value)" >
-                  <small [class.d-none]="title.valid || title.untouched" class="text-danger">Title is required!</small>
-                  <small *ngIf="dup" class="text-danger">This name has already existed!</small>
-                </div>
-              <div class="form-group">
-                <label>Year</label>
-                <input [class.is-invalid]="year.invalid && year.touched" required class="form-control rounded-0" type="text"
-                  #year="ngModel" name="year" [(ngModel)]="this.currentMovie.Year">
-                <small [class.d-none]="year.valid || year.untouched" class="text-danger">Year is required!</small>
-              </div>
-              <div class="form-group">
-                <label>Runtime</label>
-                <input [class.is-invalid]="runtime.invalid && runtime.touched" required class="form-control rounded-0"
-                  type="text" #runtime="ngModel" name="runtime" [(ngModel)]="this.currentMovie.Runtime">
-                <small [class.d-none]="runtime.valid || runtime.untouched" class="text-danger">Runtime is required!</small>
-              </div>
-              <div class="form-group">
-                <label>Genre</label>
-                <input [class.is-invalid]="genre.invalid && genre.touched" required class="form-control rounded-0" type="text"
-                  #genre="ngModel" name="genre" [(ngModel)]="this.currentMovie.Genre">
-                <small [class.d-none]="genre.valid || genre.untouched" class="text-danger">Genre is required!</small>
-              </div>
-              <div class="form-group">
-                <label>Director</label>
-                <input [class.is-invalid]="director.invalid && director.touched" required class="form-control rounded-0"
-                  type="text" #director="ngModel" name="director" [(ngModel)]="this.currentMovie.Director">
-                <small [class.d-none]="director.valid || director.untouched" class="text-danger">Director is required!</small>
-              </div>
-            </form>
-          </div>
-  
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
-        <button type="button" class="btn btn-outline-dark" (mouseenter) ="checkDup(title.value)" [disabled]="thisForm.form.invalid || dup" (click)="modal.close('Save click')">Save</button>
-      </div>
-    </ng-template> -->
-  
+
     <ng-template #Content let-modal>
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Movie update</h4>
+        <h4 class="modal-title" id="modal-basic-title">Movie Details</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -72,16 +12,10 @@
           <div class="card-body">
             <form class="form" #thisForm="ngForm">
               <div class="form-group">
-                <label>Id</label>
-                <input [class.is-invalid]="id.invalid && id.touched" required class="form-control rounded-0" type="text"
-                  #id="ngModel" name="id" [(ngModel)]="this.currentMovie.Id">
-                <small [class.d-none]="id.valid || id.untouched" class="text-danger">Id is required!</small>
-              </div>
-              <div class="form-group">
                   <label>Title</label>
                   <input [class.is-invalid]="title.invalid && title.touched || dup" required class="form-control rounded-0" type="text"
                     #title="ngModel"  name="title" [(ngModel)]="this.currentMovie.Title" [id]="title.value | toEnglish" (blur) = "this.currentMovie.Title = $event.target.id"
-                    (blur)="checkDup(title.value)" >
+                    (blur)="checkDup(title.value)" placeholder="The title will contain only English letters" >
                   <small [class.d-none]="title.valid || title.untouched" class="text-danger">Title is required!</small>
                   <small *ngIf="dup" class="text-danger">This name has already existed!</small>
                 </div>
@@ -89,38 +23,33 @@
                 <label>Year</label>
                 <input [class.is-invalid]="year.invalid && year.touched ||invalidYear" required class="form-control rounded-0" type="number"
                   #year="ngModel" name="year" [(ngModel)]="this.currentMovie.Year"
-                  (input)="checkYear(year.value)">
+                  (input)="checkYear(year.value)" placeholder="Please enter year between 1900 to 2019">
                 <small [class.d-none]="year.valid || year.untouched" class="text-danger">Year is required!</small>
-                <small *ngIf="invalidYear &&year.value" class="text-danger">Please enter year between 1900 to 2019</small>
+                <small *ngIf="invalidYear &&year.value" class="text-danger">The year should be between 1900 to 2019</small>
               </div>
               <div class="form-group">
                 <label>Runtime (min)</label>
                 <input [class.is-invalid]="runtime.invalid && runtime.touched || invalidRuntime" required class="form-control rounded-0"
                   type="number" #runtime="ngModel" name="runtime" [(ngModel)]="this.currentMovie.Runtime"
-                  (input)="checkRuntime(runtime.value)">
+                  (input)="checkRuntime(runtime.value)" placeholder="Please enter number between 1 to 999">
                 <small [class.d-none]="runtime.valid || runtime.untouched" class="text-danger">Runtime is required!</small>
-                <small *ngIf="invalidRuntime &&(runtime.value || runtime.value==0)" class="text-danger">Please enter number between 1 to 999</small>
+                <small *ngIf="invalidRuntime &&(runtime.value || runtime.value==0)" class="text-danger">The time should be between 1 min to 999 min</small>
               </div>
               <div class="form-group">
                   <label>Genre</label>
                   <select [(ngModel)]="this.currentMovie.Genre" class="form-control" name="genre" #genre="ngModel"
-                  [class.is-invalid]="genre.invalid && genre.touched" required>
+                  [class.is-invalid]="genre.invalid && genre.touched" required >
+                  <option value="" disabled selected>Select your option</option>
                     <option  >Biography</option>
                     <option  >Crime</option>
                     <option  >Drama</option>
                  </select>
                  <small [class.d-none]="genre.valid || genre.untouched" class="text-danger">Genre is required!</small>
               </div>
-              <!-- <div class="form-group">
-                <label>Genre</label>
-                <input [class.is-invalid]="genre.invalid && genre.touched" required class="form-control rounded-0" type="text"
-                  #genre="ngModel" name="genre" [(ngModel)]="this.currentMovie.Genre">
-                <small [class.d-none]="genre.valid || genre.untouched" class="text-danger">Genre is required!</small>
-              </div> -->
               <div class="form-group">
                 <label>Director</label>
                 <input [class.is-invalid]="director.invalid && director.touched" required class="form-control rounded-0"
-                  type="text" #director="ngModel" name="director" [(ngModel)]="this.currentMovie.Director">
+                  type="text" #director="ngModel" name="director" [(ngModel)]="this.currentMovie.Director" placeholder="Any character will be accepted">
                 <small [class.d-none]="director.valid || director.untouched" class="text-danger">Director is required!</small>
               </div>
             </form>
@@ -161,7 +90,6 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Id</th>
           <th>Title</th>
           <th>Year</th>
           <th>Runtime (min)</th>
@@ -174,7 +102,6 @@
       <tbody>
         <tr *ngFor="let movie of movies | async; let i = index">
           <th scope="row">{{ i + 1 }}</th>
-          <td>{{movie.Id}}</td>
           <td class="title" id="{{i}}">{{movie.Title}}</td>
           <td>{{movie.Year}}</td>
           <td>{{movie.Runtime}}</td>
