@@ -29,5 +29,6 @@ export function reducer(state: Movie[] = [initialState], action: MovieActions.Ac
 
         default:
             return state;
+            //
     }
 }
